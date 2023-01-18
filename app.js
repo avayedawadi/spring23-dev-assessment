@@ -48,7 +48,6 @@ app.get('/api/health', (req, res) => {
     res.json({"healthy" : true})
 })
 
-//need to make sure email is uniqe
 app.post('/api/user', async (req, res) => {
     try {
         if(!req.body.email || !req.body.firstName || !req.body.lastName || !req.body.password) {
@@ -96,7 +95,7 @@ app.post('/api/animals', (req, res) => {
         }
         const animalObj = {
             name: req.body.name,
-            hoursTrained: req.body.hoursTrained,
+            hoursTrained: parseInt(req.body.hoursTrained),
             owner: payload.userId,
             dateOfBirth: req.body.date,
             profilePicture: "RandomString",
@@ -131,16 +130,14 @@ app.post('/api/training', async (req, res) => {
             res.status(400).send('Status: Hours is not a valid number');
             return;
         }
-        //if the animal's owner id does not match the inputted user id, throw an error
         if((await animals.findOne(ObjectId(req.body.animal))).owner !== req.body.user ) {
             res.status(400).send("Status: Animal's owner does not match owner given in request");
             return;
         }
         const trainingObj = {
-            //come back and set a specific method of writing the date
             date: req.body.date,
             description: req.body.description,
-            hours: req.body.hours,
+            hours: parseInt(req.body.hours),
             animal: req.body.animal,
             user: payload.userId,
             trainingLogVideo: "RandomURL"
@@ -399,16 +396,6 @@ app.post('/api/file/upload', async (req, res) => {
         return;
     }
 })
-
-
-
-
-
-
-
-
-
-
 
 app.listen(APP_PORT, () => {
     console.log(`api listening at http://localhost:${APP_PORT}`)
