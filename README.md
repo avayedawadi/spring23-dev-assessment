@@ -1,5 +1,5 @@
 ## Introduction
-My name is Avaye Dawadi and I am a first year CS major at Georgia Tech. For this dev assessment I completed all parts of the assessment (from easy to expert). Thank you!
+My name is Avaye Dawadi and I am a CS major at Georgia Tech. For this dev assessment I completed all parts of the assessment (from easy to expert). Thank you!
 
 ## Project Details
 
